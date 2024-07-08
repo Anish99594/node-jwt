@@ -1,0 +1,48 @@
+Prerequisites
+  Node.js (v14 or above recommended)
+  npm (Node package manager)
+Installation
+  1. Clone the repository or download the code.
+        git clone https://github.com/yourusername/express-jwt-auth-api.git
+        cd express-jwt-auth-api
+  2. Install the required dependencies.
+        npm install
+Running the Server
+  To start the server, run:
+      node app.js
+The server will start on port 5000. You can access it at http://localhost:5000.
+API Endpoints
+  1. Get Message
+      Endpoint: GET /
+      Description: Returns a simple message.
+
+  2. Response:
+      "message": "a simple api"
+  3. Access Profile
+      Endpoint: POST /profile
+      
+      Description: Accesses the user's profile if a valid JWT is provided.
+      
+      Headers:
+        Authorization: Bearer <token>
+      Response:
+        If the token is valid:
+        {
+            "message": "profile accessed",
+            "authData": {
+                "user": {
+                    "id": 1,
+                    "username": "anish",
+                    "email": "anish@gmail.com"
+                },
+                "iat": 1599999999,
+                "exp": 1600000299
+            }
+        }
+        If the token is invalid:
+        {
+          "result": "invalid token!"
+        }
+Middleware
+  verifyToken
+  This middleware function verifies the JWT provided in the Authorization header of the request. If the token is valid, it allows the request to proceed; otherwise, it returns an error.
